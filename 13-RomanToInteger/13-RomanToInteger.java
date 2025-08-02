@@ -1,0 +1,26 @@
+// Last updated: 8/2/2025, 11:57:37 PM
+class Solution {
+    public int romanToInt(String s) {
+        int ans=0;
+        int num=0 , temp=0;
+        for(int i=s.length()-1 ; i>=0 ; i--){
+            switch(s.charAt(i)){
+                case 'M' : num = 1000;
+                break;
+                case 'D' : num=500;break;
+                case 'C' : num=100; break;
+                case 'L' : num=50;break;
+                case 'X' : num=10; break;
+                case 'V' : num=5;break;
+                case 'I' : num=1; break;
+            }
+            if(num<temp){
+                ans=ans-num;
+            }else{
+                ans = ans+num;
+            }
+            temp=num;
+        }
+        return ans;
+    }
+}
