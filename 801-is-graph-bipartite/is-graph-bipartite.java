@@ -12,15 +12,15 @@ class Solution {
         return true;
     }
     public boolean bfs(int[][] graph, int[] vis,int i){
-        Queue<pair> qu = new LinkedList<>();
-        qu.add(new pair(-1,i));
+        Stack<pair> qu = new Stack<>();
+        qu.push(new pair(-1,i));
         while(!qu.isEmpty()){
-            pair x = qu.poll();
+            pair x = qu.pop();
             int color = 0-x.col;
             vis[x.i] = x.col;
             for(int neigh : graph[x.i]){
                 if(vis[neigh]==0){
-                    qu.add(new pair(color,neigh));
+                    qu.push(new pair(color,neigh));
                 }else if(vis[neigh]!=color) return false;
             }
         }
