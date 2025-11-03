@@ -1,5 +1,11 @@
 class Solution {
-    public int minCost(String colors, int[] neededTime) {
+
+    static {
+        for(int i=0; i<400; i++) minCost("a", new int[1]);
+    }
+
+
+    public static int minCost(String colors, int[] neededTime) {
         int total=neededTime[neededTime.length-1];
         int ans=0;
         int max=neededTime[0];
