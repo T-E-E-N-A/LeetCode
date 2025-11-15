@@ -20,7 +20,7 @@ class Node {
 
 class Solution {
     
-    HashMap<Node,Node> map = new HashMap<>();
+    Map<Node,Node> map = new HashMap<>();
     // map old addresss -> new address
 
     public Node cloneGraph(Node node) {
@@ -29,7 +29,7 @@ class Solution {
 
         Node ans = new Node(node.val);
         map.put(node,ans);
-        
+
         for(Node nbrs : node.neighbors){
             ans.neighbors.add(cloneGraph(nbrs));
         }
