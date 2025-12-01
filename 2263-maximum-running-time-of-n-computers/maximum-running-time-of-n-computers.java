@@ -7,7 +7,6 @@ class Solution {
             min = Math.min(min,i);
         }
         if(batteries.length==n) return min;
-        // Arrays.sort(batteries);
         long st=min,end=sum/n;
         long ans=min;
         while(st<=end){
@@ -25,12 +24,10 @@ class Solution {
         for(int i=batteries.length-1 ; i>=0 ; i--){
             if(batteries[i]>=span && n>0){
                 n--;
-            }else if(batteries[i]+rem>=span && n>0){
-                rem=(batteries[i]+rem)-span;
-                n--;
             }else{
                 rem += batteries[i];
             }
+            if(rem>=n*span) return true;
         }
         return n<=0;
     }
