@@ -1,17 +1,18 @@
 class Solution {
     public int minCostConnectPoints(int[][] points) {
         boolean[] vis = new boolean[points.length];
-        PriorityQueue<PrimsPair> pq = new PriorityQueue<>((a,b)->a.cost-b.cost);
-        pq.add(new PrimsPair(points[0],points[0],0));
+        // 0->vtx     1->cost
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)->a[1]-b[1]);
+        pq.add(new int[]{0,0});
         int ans=0;
         while(!pq.isEmpty()){
-            PrimsPair x = pq.poll();
-            if(vis[x.idx]) continue;
-            vis[x.idx]=true;
-            ans += x.cost;
+            int[] x = pq.poll();
+            if(vis[x[0]]) continue;
+            vis[x[0]]=true;
+            ans += x[1];
             for(int i=0 ; i<points.length ; i++){
                 if(vis[i]) continue;
-                pq.add(new PrimsPair(points[i],x.vtx,i));
+                pq.add(new int[]{i,cost(points[i],points[x[0]])});
             }
         }
         return ans;
@@ -20,17 +21,4 @@ class Solution {
     public int cost(int[] x,int[] y){
         return Math.abs(y[0]-x[0]) + Math.abs(y[1]-x[1]);
     }
-    class PrimsPair {
-		int[] vtx;
-		int[] acq_vtx;
-		int cost;
-        int idx;
-
-		public PrimsPair(int[] vtx, int[] acq_vtx,int idx) {
-			this.vtx = vtx;
-			this.acq_vtx = acq_vtx;
-			this.cost = cost(vtx,acq_vtx);
-            this.idx = idx;
-		}
-	}
 }
