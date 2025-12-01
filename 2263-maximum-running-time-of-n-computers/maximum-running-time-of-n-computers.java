@@ -7,7 +7,7 @@ class Solution {
             min = Math.min(min,i);
         }
         if(batteries.length==n) return min;
-        Arrays.sort(batteries);
+        // Arrays.sort(batteries);
         long st=min,end=sum/n;
         long ans=min;
         while(st<=end){
