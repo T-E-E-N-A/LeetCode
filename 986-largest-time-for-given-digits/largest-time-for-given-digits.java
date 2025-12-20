@@ -1,18 +1,24 @@
 class Solution {
     public String largestTimeFromDigits(int[] arr) {
-        Arrays.sort(arr);
-        for(int i=23;i>=0;i--){
-            for(int j=59;j>=0;j--){
+        int max=-1;
+        for(int i=0 ; i<4 ; i++){
+            for(int j=0 ; j<4 ; j++){
+                if(i==j) continue;
+                int x = arr[i]*10+arr[j];
+                if(x>23) continue;
 
-                int b[]=new int[]{i/10,i%10,j/10,j%10};
-                Arrays.sort(b);
+                for(int k=0 ; k<4 ; k++){
+                    if(k==i || k==j) continue;
 
-                if(Arrays.equals(arr,b)){
-                    String res=String.format("%02d:%02d",i,j);
-                    return res;
+                    int l = 6-i-j-k;
+                    int mm = arr[k]*10+arr[l];
+                    if(mm>59) continue;
+
+                    max = Math.max(max,x*60+mm);
                 }
             }
         }
-        return "";
+        if (max == -1) return "";
+        return String.format("%02d:%02d", max / 60, max % 60);
     }
 }
